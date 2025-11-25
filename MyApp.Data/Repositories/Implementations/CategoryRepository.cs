@@ -1,4 +1,5 @@
-﻿using MyApp.Data.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using MyApp.Data.Data;
 using MyApp.Data.Entities;
 using MyApp.Data.Repositories.Interfaces;
 
@@ -8,28 +9,36 @@ namespace MyApp.Data.Repositories.Implementations
     {
         private readonly AppDbContext _context = context;
 
-        public Task<IEnumerable<Category>> GetAllAsync()
+        public async Task<IEnumerable<Category>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Categories.ToListAsync();
         }
 
-        public Task<Category> GetByIdAsync(int id)
+        public async Task<Category?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Categories.FindAsync(id);
+
         }
-        public Task<bool> CreateAsync(Category category)
+        public async Task<bool> CreateAsync(Category category)
         {
-            throw new NotImplementedException();
+            await _context.Categories.AddAsync(category);
+            return await _context.SaveChangesAsync() > 0;
         }
 
-        public Task<bool> UpdateAsync(Category category)
+        public async Task<bool> UpdateAsync(Category category)
         {
-            throw new NotImplementedException();
+            _context.Categories.Update(category);
+            return await _context.SaveChangesAsync() > 0;
         }
 
-        public Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var category = await _context.Categories.FindAsync(id);
+            if (category == null)
+                return false;
+            _context.Categories.Remove(category);
+            return await _context.SaveChangesAsync() > 0;
+
         }
     }
 }
