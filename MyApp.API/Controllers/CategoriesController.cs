@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyApp.API.DTOs;
+using MyApp.Data.Entities;
 using MyApp.Data.Repositories.Interfaces;
 
 namespace MyApp.API.Controllers
@@ -25,9 +27,23 @@ namespace MyApp.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryDto dto)
+        public async Task<IActionResult> CreateCategory([FromBody] CategoryCreateDto dto)
         {
-
+            Category categoryToCreate = new()
+            {
+                Name = dto.Name,
+                Description = dto.Description
+            };
+            var (isCreated, id) = await _categories.CreateAsync(categoryToCreate);
+            if (!isCreated)
+                return BadRequest("Error Creating Category..");
+            return Ok($"Category with id {id} Created");
         }
+
+        //[HttpPut("{id:int}")]
+        //public async Task<IActionResult> UpdateCategory([FromRoute] int id, [FromBody] UpdateCategoryDto dto)
+        //{
+
+        //}
     }
 }

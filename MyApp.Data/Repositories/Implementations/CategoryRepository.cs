@@ -19,10 +19,10 @@ namespace MyApp.Data.Repositories.Implementations
             return await _context.Categories.FindAsync(id);
 
         }
-        public async Task<bool> CreateAsync(Category category)
+        public async Task<(bool, int)> CreateAsync(Category category)
         {
             await _context.Categories.AddAsync(category);
-            return await _context.SaveChangesAsync() > 0;
+            return (await _context.SaveChangesAsync() > 0, category.Id);
         }
 
         public async Task<bool> UpdateAsync(Category category)
@@ -40,5 +40,6 @@ namespace MyApp.Data.Repositories.Implementations
             return await _context.SaveChangesAsync() > 0;
 
         }
+
     }
 }
