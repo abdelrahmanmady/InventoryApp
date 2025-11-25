@@ -1,4 +1,4 @@
-﻿namespace MyApp.API.DTOs
+﻿namespace MyApp.API.DTOs.CategoryDTOs
 {
     public class CategoryUpdateDto
     {

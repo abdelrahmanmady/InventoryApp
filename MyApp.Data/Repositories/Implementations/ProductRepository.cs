@@ -18,10 +18,10 @@ namespace MyApp.Data.Repositories.Implementations
             return await _context.Products.FindAsync(id);
 
         }
-        public async Task<bool> CreateAsync(Product product)
+        public async Task<(bool, int)> CreateAsync(Product product)
         {
             await _context.Products.AddAsync(product);
-            return await _context.SaveChangesAsync() > 0;
+            return (await _context.SaveChangesAsync() > 0, product.Id);
         }
 
         public async Task<bool> UpdateAsync(Product product)

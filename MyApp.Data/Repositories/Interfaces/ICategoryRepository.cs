@@ -9,5 +9,8 @@ namespace MyApp.Data.Repositories.Interfaces
         Task<(bool, int)> CreateAsync(Category category);
         Task<bool> UpdateAsync(Category category);
         Task<bool> DeleteAsync(int id);
+        Task<bool> ExistsAsync(int id);
+
+
     }
 }

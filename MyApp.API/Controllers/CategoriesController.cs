@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyApp.API.DTOs;
+using MyApp.API.DTOs.CategoryDTOs;
 using MyApp.Data.Entities;
 using MyApp.Data.Repositories.Interfaces;
 

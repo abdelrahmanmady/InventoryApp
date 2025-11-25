@@ -6,7 +6,7 @@ namespace MyApp.Data.Repositories.Interfaces
     {
         Task<IEnumerable<Product>> GetAllAsync();
         Task<Product?> GetByIdAsync(int id);
-        Task<bool> CreateAsync(Product category);
+        Task<(bool, int)> CreateAsync(Product category);
         Task<bool> UpdateAsync(Product category);
         Task<bool> DeleteAsync(int id);
     }
