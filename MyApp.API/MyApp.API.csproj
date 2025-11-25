@@ -20,4 +20,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MyApp.Data\MyApp.Data.csproj" />
+  </ItemGroup>
+
 </Project>
