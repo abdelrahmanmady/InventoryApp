@@ -40,10 +40,30 @@ namespace MyApp.API.Controllers
             return Ok($"Category with id {id} Created");
         }
 
-        //[HttpPut("{id:int}")]
-        //public async Task<IActionResult> UpdateCategory([FromRoute] int id, [FromBody] UpdateCategoryDto dto)
-        //{
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> UpdateCategory([FromRoute] int id, [FromBody] CategoryUpdateDto dto)
+        {
+            var categoryToUpdate = await _categories.GetByIdAsync(id);
+            if (categoryToUpdate == null)
+                return NotFound("Invalid Category ID");
 
-        //}
+            categoryToUpdate.Name = dto.Name ?? categoryToUpdate.Name;
+            categoryToUpdate.Description = dto.Description ?? categoryToUpdate.Description;
+            var isUpdated = await _categories.UpdateAsync(categoryToUpdate);
+
+            if (!isUpdated)
+                return BadRequest("Error Updating Category..");
+            return Ok($"Category with  id {categoryToUpdate.Id} Updated");
+
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> DeleteCategory([FromRoute] int id)
+        {
+            var isDeleted = await _categories.DeleteAsync(id);
+            if (!isDeleted)
+                return BadRequest("Error Deleting Category..");
+            return Ok($"Category with id {id} Deleted");
+        }
     }
 }
