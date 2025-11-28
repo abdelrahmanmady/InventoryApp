@@ -38,17 +38,16 @@ InventoryApp/
 
 ---
 
-# 🔷 Architecture Diagram (Mermaid)
+# 🔷 Architecture Diagram
 
 ```mermaid
 flowchart LR
-    A[API Layer\nControllers + DTOs] --> B[MediatR\n(ISender)]
-    B --> C[Application Layer\nCQRS Handlers]
-    C --> D[Repositories\nICategoryRepository\nIProductRepository]
-    D --> E[EF Core\nAppDbContext]
-    E --> F[(SQL Server Database)]
+    API[API Layer Controllers and DTOs] --> MEDIATR[MediatR ISender]
+    MEDIATR --> APP[Application Layer CQRS Handlers]
+    APP --> REPO[Repositories ICategoryRepository IProductRepository]
+    REPO --> DBCTX[EF Core AppDbContext]
+    DBCTX --> DB[(SQL Server Database)]
 ```
-
 ---
 
 # 🗄 Database ERD (Entity Relationship Diagram)
