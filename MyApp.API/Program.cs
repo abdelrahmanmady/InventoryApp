@@ -1,5 +1,6 @@
 
 using Microsoft.EntityFrameworkCore;
+using MyApp.Application;
 using MyApp.Data.Data;
 using MyApp.Data.Repositories.Implementations;
 using MyApp.Data.Repositories.Interfaces;
@@ -20,6 +21,9 @@ namespace MyApp.API
             //Register Repositories
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
+            //Configure CQRS MediatR
+            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ApplicationAssemblyMarker).Assembly));
 
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

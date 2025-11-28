@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="MyApp.API/MyApp.API.csproj" />
+  <Project Path="MyApp.Application/MyApp.Application.csproj" Id="f6469835-d344-4995-b7db-55636eb87e7b" />
   <Project Path="MyApp.Data/MyApp.Data.csproj" />
 </Solution>
