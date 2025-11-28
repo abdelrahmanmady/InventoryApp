@@ -1,4 +1,4 @@
-# 📦 ASP.NET Core Web API — EF Core, Repository Pattern, CQRS, MediatR
+# 📦 Inventory ASP.NET Core Web API — EF Core, Repository Pattern, CQRS, MediatR
 
 This project is a modern **ASP.NET Core Web API** built using clean architectural principles and a two-layer solution structure.  
 It demonstrates core backend development skills including:
